@@ -117,11 +117,13 @@ def bin_search(listaNoduri, nodDeInserat, ls, ld):
 def aStarSolMultiple(gr, nrSolutiiCautate=1):
     # in coada vom avea doar noduri de tip NodParcurgere (nodurile din arborele de parcurgere)
     c = [NodParcurgere(gr.start, 0, gr.estimeaza_h(gr.start))]
+    viz = []
 
     while len(c) > 0:
         #print("Coada actuala: " + str(c))
         #input()
         nodCurent = c.pop(0)
+        viz.append(nodCurent)
 
         if gr.scop(nodCurent.info):
             print("Solutie:")
@@ -135,11 +137,12 @@ def aStarSolMultiple(gr, nrSolutiiCautate=1):
                 return
         # [2, 5, 7, 8, 10, 14]
         for s in gr.succesori(nodCurent):
-            indice = bin_search(c, s, 0, len(c) - 1)
-            if indice == len(c):
-                c.append(s)
-            else:
-                c.insert(indice, s)
+            if s not in viz:
+                indice = bin_search(c, s, 0, len(c) - 1)
+                if indice == len(c):
+                    c.append(s)
+                else:
+                    c.insert(indice, s)
 
 
 #### algoritm BF
