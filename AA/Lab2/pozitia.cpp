@@ -38,6 +38,10 @@ bool onSegment(pii p, pii q, pii r) {
 }
 
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
     long long n, m, x, y, drMax = 0;
     
     cin >> n;
